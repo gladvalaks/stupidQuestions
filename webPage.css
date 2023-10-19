@@ -1,7 +1,41 @@
-table,td,tr{
-    border: 1px solid #e40000;
+
+.forum-table{
+    background-color: azure;
+    color: #ea00ff;
+    border: 2px solid #7b88ff;
+    width: 150px;
+}
+.forum-table td{
+    border: 2px solid #7b88ff;
+    max-width: 200px;
+    word-wrap: break-word;
+}
+.form{
+    display: inline-block;
+    max-width: 200px;
+    max-block-size: 100;
+    vertical-align: top;
+    border: 4px solid #ea00ff;
+    border-radius: 3px;
+    padding: 25px;
+    margin-bottom: 50px;
+    background-color: #6050f8b2;
+}
+.forum{
+    display: inline-block;
+    vertical-align: baseline;
+    margin-left: 50px;
+
 }
 .input-form{
-    margin: 20px;
-    margin-left: 10px;   
+    margin-bottom: 20px;
+    border-radius: 10px;
+    border-color: black;
+    background-color:#3dffa4b2 ;
+    color: rgb(255, 0, 85);
+}
+.input-button{
+    border-radius: 10px;
+    height: 40px;
+    background-color: rgb(0, 174, 255);
 }

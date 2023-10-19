@@ -1,18 +1,19 @@
 class Manager {
     questions = [];//в идеале с запроса
-    form = new Form(this);
+    form = new Form(this.listener);
     table = new Table(document.querySelector(".forum-table"));
     number = 10;
     constructor() {
+        this.listener = new EventListener();
         this.initListener();
     }
     initListener() {
-        EventListener.subscribeListener("newQuestionUpload", (question) => {
+        this.listener.subscribeListener("newQuestionUpload", (question) => {
             this.addToQuestions(question);
             this.table.addNewRow(question);
         });
 
-        EventListener.subscribeListener("newQuestionUpload", this.form.clearInputs.bind(this.form));
+        this.listener.subscribeListener("newQuestionUpload", this.form.clearInputs.bind(this.form));
     }
     addToQuestions(question){
         this.questions.push(question);
@@ -24,14 +25,14 @@ class Manager {
 }
 
 class EventListener{
-    static EventList = {};
-    static subscribeListener(event, callback) {
+     EventList = {};
+     subscribeListener(event, callback) {
         if (!this.EventList[event]) {
             this.EventList[event] = [];
         }
         this.EventList[event].push(callback)
     }
-    static publishListener(event, params = []) {
+     publishListener(event, params = []) {
         if (!this.EventList[event]) {
             return;
         }
@@ -41,8 +42,8 @@ class EventListener{
 
 
 class Form {
-    constructor() {
-        this.eventListener = new 
+    constructor(listener) {
+        this.listener = listener;
         this.init();
         this.initEventListener();
     }
@@ -76,7 +77,7 @@ class Form {
             question: this.$userQuestionInput.value,
             answer: ""
         };
-        EventListener.publishListener("newQuestionUpload",questionForPush);
+        this.listener.publishListener("newQuestionUpload",questionForPush);
 
 
     }

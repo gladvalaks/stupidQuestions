@@ -12,14 +12,7 @@ class Forum {
       answer: "Нужно убиться до стены"
     }
   }//Будет браться из запроса
-  constructor($table) {
-    this.$table = $table;
-    this.$submitButton = document.querySelector("[data-name = 'submit-button'")
-    this.$userNameInput = document.querySelector("[data-name = 'user-name']");
-    this.$userQuestionInput = document.querySelector("[data-name = 'user-question']");
-    this.init.call(this);
-
-  }
+  
 
   createNewQuestion() {
     if (this.$userNameInput.value && this.$userQuestionInput.value) {
@@ -33,12 +26,9 @@ class Forum {
       this.addNewRow(newId);
     }
   }
-  clearInputs() {
-    this.$userNameInput.value = "";
-    this.$userQuestionInput.value = "";
-  }
+
   getLastId() {
-    const keys = Object.keys(this.questions);
+    Object.keys(this.questions);
     return keys.length - 1;
   }
   addNewRow(id) {
