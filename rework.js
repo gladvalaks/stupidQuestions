@@ -1,10 +1,10 @@
 class Manager {
     questions = [];//в идеале с запроса
-    form = new Form(this.listener);
     table = new Table(document.querySelector(".forum-table"));
     number = 10;
     constructor() {
         this.listener = new EventListener();
+        this.form = new Form(this.listener);
         this.initListener();
     }
     initListener() {
@@ -16,6 +16,7 @@ class Manager {
         this.listener.subscribeListener("newQuestionUpload", this.form.clearInputs.bind(this.form));
     }
     addToQuestions(question){
+        question.id = this.questions.length
         this.questions.push(question);
 
     }
@@ -81,6 +82,9 @@ class Form {
 
 
     }
+    answerUpload(){
+
+    }
 }
 
 
@@ -93,9 +97,24 @@ class Table {
         let counter = 0;
         const $newRow = this.$table.insertRow();
         for (let element in question) {
+            if (element == "id"){
+                $newRow.dataset.id = question[element];
+                continue;
+            }
             const $cell = $newRow.insertCell(counter++);
-            $cell.appendChild(document.createTextNode(question[element]));
+            if (question[element] == "" && element =="answer"){
+                const $buttonAnswer = document.createElement("BUTTON");
+                $buttonAnswer.innerHTML = "Введите правильный ответ";
+                $cell.appendChild($buttonAnswer);
+                
+            }
+            else{
+                $cell.appendChild(document.createTextNode(question[element]));
+            }
         }
+    }
+    addAnswer(id){
+
     }
 
 }
